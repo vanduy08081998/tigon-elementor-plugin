@@ -187,17 +187,6 @@ class TH_Posts extends Widget_Base {
 		);
 
 		$this->add_control(
-			'show_meta',
-			[
-				'label' => __( 'Meta', 'elementor-tigonhome' ),
-				'type' => Controls_Manager::SWITCHER,
-				'label_on' => __( 'Show', 'elementor-tigonhome' ),
-				'label_off' => __( 'Hide', 'elementor-tigonhome' ),
-				'default' => 'yes',
-			]
-		);
-
-		$this->add_control(
 			'show_read_more',
 			[
 				'label' => __( 'Read More', 'elementor-tigonhome' ),
@@ -785,63 +774,6 @@ class TH_Posts extends Widget_Base {
 		);
 
 		$this->add_control(
-			'heading_meta_style',
-			[
-				'label' => __( 'Meta', 'elementor-tigonhome' ),
-				'type' => Controls_Manager::HEADING,
-				'condition' => [
-					'show_meta!' => '',
-				],
-			]
-		);
-
-		$this->add_control(
-			'meta_color',
-			[
-				'label' => __( 'Color', 'elementor-tigonhome' ),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}} .th-post__meta' => 'color: {{VALUE}};',
-				],
-				'condition' => [
-					'show_meta!' => '',
-				],
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'meta_typography',
-				'default' => '',
-				'selector' => '{{WRAPPER}} .th-post__meta',
-				'condition' => [
-					'show_meta!' => '',
-				],
-			]
-		);
-
-		$this->add_control(
-			'meta_space_between',
-			[
-				'label' => __( 'Space Between', 'elementor-tigonhome' ),
-				'type' => Controls_Manager::SLIDER,
-				'range' => [
-					'px' => [
-						'max' => 50,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .th-post__meta li:not(:last-child)' => 'margin-right: {{SIZE}}{{UNIT}};',
-				],
-				'condition' => [
-					'show_meta!' => '',
-				],
-			]
-		);
-
-		$this->add_control(
 			'read_more_color',
 			[
 				'label' => __( 'Color', 'elementor-tigonhome' ),
@@ -1188,26 +1120,21 @@ class TH_Posts extends Widget_Base {
 							<?php endforeach; ?>
 						</div>
 					<?php endif; ?>
+					<?php if ('' !== $this->get_instance_value_skin('show_title') || '' !== $this->get_instance_value_skin('show_read_more')): ?>
+						<div class="th-post__links">
+							<?php
+								if( '' !== $this->get_instance_value_skin('show_title') ) {
+									the_title( '<h3 class="th-post__title"><a href="' . get_the_permalink() . '">', '</a></h3>' );
+								}
+							?>
+							<?php
+								if( '' !== $this->get_instance_value_skin('show_read_more') ) {
+									echo '<a class="th-post__read-more" href="' . get_the_permalink() . '">' . $this->get_instance_value_skin('read_more_text') . '</a>';
+								}
+							?>
+						</div>
+					<?php endif; ?>
 
-					<?php if( '' !== $this->get_instance_value_skin('show_meta') ) { ?>
-						<ul class="th-post__meta">
-				      <li class="th-post__author">
-								<span class="th-post__author-text"><?php echo get_the_author(); ?></span>
-				      </li>
-				    </ul>
-					<?php } ?>
-
-					<?php
-						if( '' !== $this->get_instance_value_skin('show_title') ) {
-							the_title( '<h3 class="th-post__title"><a href="' . get_the_permalink() . '">', '</a></h3>' );
-						}
-					?>
-
-					<?php
-						if( '' !== $this->get_instance_value_skin('show_read_more') ) {
-							echo '<a class="th-post__read-more" href="' . get_the_permalink() . '">' . $this->get_instance_value_skin('read_more_text') . '</a>';
-						}
-					?>
 				</div>
 			</article>
 		<?php

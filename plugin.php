@@ -64,7 +64,7 @@ class Plugin {
 	 */
 	public function enqueue_styles() {
 
-		// wp_enqueue_style( 'eg-elements', plugins_url( '/assets/css/elements.css', __FILE__ ) );
+		// wp_enqueue_style( 'th-elements', plugins_url( '/assets/css/elements.css', __FILE__ ) );
 	}
 
 	/**
@@ -81,7 +81,7 @@ class Plugin {
 	 */
 	public function enqueue_scripts() {
 
-		// wp_enqueue_script( 'bf-elements', plugins_url( '/assets/js/elements.js', __FILE__ ), [ 'jquery' ], false, true );
+		// wp_enqueue_script( 'th-elements', plugins_url( '/assets/js/elements.js', __FILE__ ), [ 'jquery' ], false, true );
 
 	}
 
