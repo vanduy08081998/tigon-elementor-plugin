@@ -429,6 +429,7 @@ class TH_Posts extends Widget_Base {
 				],
 				'selectors' => [
 					'{{WRAPPER}} .th-post' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}} .th-post__links' => 'justify-content: {{VALUE}};',
 				],
 			]
 		);
