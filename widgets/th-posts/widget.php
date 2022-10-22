@@ -430,9 +430,6 @@ class TH_Posts extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .th-post' => 'text-align: {{VALUE}};',
 				],
-				'condition' => [
-					'_skin' => '',
-				],
 			]
 		);
 
@@ -445,9 +442,6 @@ class TH_Posts extends Widget_Base {
 			[
 				'label' => __( 'Box', 'elementor-tigonhome' ),
 				'tab' => Controls_Manager::TAB_STYLE,
-				'condition' => [
-					'_skin' => '',
-				],
 			]
 		);
 
@@ -613,7 +607,6 @@ class TH_Posts extends Widget_Base {
 				'label' => __( 'Image', 'elementor-tigonhome' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 				'condition' => [
-					'_skin' => '',
 					'show_thumbnail!' => '',
 				],
 			]
@@ -676,9 +669,6 @@ class TH_Posts extends Widget_Base {
 			[
 				'label' => __( 'Content', 'elementor-tigonhome' ),
 				'tab' => Controls_Manager::TAB_STYLE,
-				'condition' => [
-					'_skin' => '',
-				],
 			]
 		);
 
@@ -700,7 +690,7 @@ class TH_Posts extends Widget_Base {
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
-					'{{WRAPPER}} .th-post__title' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .th-post__title a' => 'color: {{VALUE}};',
 				],
 				'condition' => [
 					'show_title!' => '',
@@ -769,6 +759,17 @@ class TH_Posts extends Widget_Base {
 				'selector' => '{{WRAPPER}} .th-post__category-link',
 				'condition' => [
 					'show_category!' => '',
+				],
+			]
+		);
+
+		$this->add_control(
+			'heading_readmore_style',
+			[
+				'label' => __( 'Read More', 'elementor-tigonhome' ),
+				'type' => Controls_Manager::HEADING,
+				'condition' => [
+					'show_read_more!' => '',
 				],
 			]
 		);
