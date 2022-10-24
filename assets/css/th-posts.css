@@ -7,5 +7,5 @@
 .th-posts .th-post__category-link:hover { color: #0693e3; }
 .th-posts .th-post__links { display: flex; justify-content: flex-end; }
 .th-posts .th-post__title { font-size: 20px; color: #222222; line-height: 1.5; text-transform: uppercase; margin-right: 10px; }
-.th-posts .th-post__read-more { font-size: 18px; line-height: 1.5; color: #0693e3; transition: all 0.3s; }
+.th-posts .th-post__read-more { min-width: 90px; font-size: 18px; line-height: 1.5; color: #0693e3; transition: all 0.3s; }
 .th-posts .th-post__read-more:hover { text-decoration: underline; }

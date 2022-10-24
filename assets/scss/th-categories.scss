@@ -1,5 +1,5 @@
-.th-posts{
-  .th-post{
+.th-categories{
+  .th-category{
     text-align: right;
     &__featured{
       position: relative;
@@ -20,19 +20,8 @@
         }
       }
     }
-    &__categories{
-      margin-top: 10px;
-    }
-    &__category-link{
-      font-size: 18px;
-      color: #222222;
-      line-height: 1.5;
-      font-weight: 500;
-      margin-top: 10px;
-      transition: all 0.3s;
-      &:hover{
-        color: #0693e3;
-      }
+    &__content{
+      padding: 20px 0 0;
     }
     &__links{
       display: flex;

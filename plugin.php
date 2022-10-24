@@ -49,6 +49,7 @@ class Plugin
 			'th-slides',
 			'th-posts',
 			'th-member',
+			'th-categories',
 		);
 
 		return $this->widgets;
@@ -62,6 +63,7 @@ class Plugin
 		wp_register_style('th-swiper', plugins_url('/assets/css/th-swiper.css', __FILE__));
 		wp_register_style('th-slides', plugins_url('/assets/css/th-slides.css', __FILE__));
 		wp_register_style('th-posts', plugins_url('/assets/css/th-posts.css', __FILE__));
+		wp_register_style('th-categories', plugins_url('/assets/css/th-categories.css', __FILE__));
 		wp_register_style('th-member', plugins_url('/assets/css/th-member.css', __FILE__));
 	}
 
@@ -137,6 +139,7 @@ class Plugin
 		// Register Widgets
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\Slides\TH_Slides());
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\Posts\TH_Posts());
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\Categories\TH_Categories());
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\Posts\TH_Member());
 	}
 
