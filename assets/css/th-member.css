@@ -1,0 +1,47 @@
+.th-members .wrapper {
+    display: grid;
+}
+
+.th-members .wrapper .not-found {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.4em;
+}
+
+.th-members h3, .th-members span {
+    margin: 0;
+}
+
+.th-members ._member .__avatar img {
+    opacity: 1;
+    transform: matrix(1.02, 0, 0, 1.02, 0, 0);
+    transition: all ease 0.3s;
+}
+
+.th-members ._member .__avatar img:hover {
+    transform: matrix(1, 0, 0, 1, 0, 0);
+}
+
+.th-members ._member .__content {
+    display: flex;
+    flex-direction: column;
+}
+
+.th-members ._member .__content .info {
+    display: inline-flex;
+}
+
+.th-members ._member .__content .info .info_space {
+    margin: 0 4px;
+}
+
+.jBox-wrapper .jBox-title {
+    font-size: 17px;
+    font-family: "title";
+}
+
+.jBox-wrapper .jBox-content {
+    font-size: 15px;
+    font-family: "element";
+}
