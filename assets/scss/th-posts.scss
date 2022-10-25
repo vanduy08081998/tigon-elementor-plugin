@@ -1,4 +1,11 @@
 .th-posts{
+  &.th-archive-posts{
+    .th-post{
+      &__content{
+        padding: 20px 0 0;
+      }
+    }
+  }
   .th-post{
     text-align: right;
     &__featured{
@@ -55,5 +62,19 @@
         text-decoration: underline;
       }
     }
+    .contentFadeInRight{
+      animation-name: contentFadeInRight;
+    }
+  }
+}
+
+@keyframes contentFadeInRight{
+  0% {
+    opacity: 0;
+    transform: translate3d(20px,0,0);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
   }
 }

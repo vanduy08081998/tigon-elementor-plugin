@@ -1,5 +1,5 @@
 <?php
-namespace ElementorTigonhome\Widgets\Posts;
+namespace ElementorTigonhome\Widgets\Archive_Posts;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
@@ -12,14 +12,14 @@ use Elementor\Group_Control_Box_Shadow;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class TH_Posts extends Widget_Base {
+class TH_Archive_Posts extends Widget_Base {
 
 	public function get_name() {
-		return 'th-posts';
+		return 'th-arhive-posts';
 	}
 
 	public function get_title() {
-		return __( 'TH Posts', 'elementor-tigonhome' );
+		return __( 'TH Arhive Posts', 'elementor-tigonhome' );
 	}
 
 	public function get_icon() {
@@ -61,23 +61,6 @@ class TH_Posts extends Widget_Base {
 		}
 
 		return $supported_ids;
-	}
-
-	public function get_supported_taxonomies() {
-
-		$supported_taxonomies = [];
-
-		$categories = get_terms( array(
-			'taxonomy' => 'category',
-	    'hide_empty' => false,
-		) );
-		if( ! empty( $categories )  && ! is_wp_error( $categories ) ) {
-			foreach ( $categories as $category ) {
-			    $supported_taxonomies[$category->term_id] = $category->name;
-			}
-		}
-
-		return $supported_taxonomies;
 	}
 
 	protected function register_layout_section_controls() {
@@ -220,83 +203,6 @@ class TH_Posts extends Widget_Base {
 			]
 		);
 
-		$this->start_controls_tabs( 'tabs_query' );
-
-		$this->start_controls_tab(
-			'tab_query_include',
-			[
-				'label' => __( 'Include', 'elementor-tigonhome' ),
-			]
-		);
-
-		$this->add_control(
-			'ids',
-			[
-				'label' => __( 'Ids', 'elementor-tigonhome' ),
-				'type' => Controls_Manager::SELECT2,
-				'options' => $this->get_supported_ids(),
-				'label_block' => true,
-				'multiple' => true,
-			]
-		);
-
-		$this->add_control(
-			'category',
-			[
-				'label' => __( 'Category', 'elementor-tigonhome' ),
-				'type' => Controls_Manager::SELECT2,
-				'options' => $this->get_supported_taxonomies(),
-				'label_block' => true,
-				'multiple' => true,
-			]
-		);
-
-		$this->end_controls_tab();
-
-
-		$this->start_controls_tab(
-			'tab_query_exnlude',
-			[
-				'label' => __( 'Exclude', 'elementor-tigonhome' ),
-			]
-		);
-
-		$this->add_control(
-			'ids_exclude',
-			[
-				'label' => __( 'Ids', 'elementor-tigonhome' ),
-				'type' => Controls_Manager::SELECT2,
-				'options' => $this->get_supported_ids(),
-				'label_block' => true,
-				'multiple' => true,
-			]
-		);
-
-		$this->add_control(
-			'category_exclude',
-			[
-				'label' => __( 'Category', 'elementor-tigonhome' ),
-				'type' => Controls_Manager::SELECT2,
-				'options' => $this->get_supported_taxonomies(),
-				'label_block' => true,
-				'multiple' => true,
-			]
-		);
-
-		$this->add_control(
-			'offset',
-			[
-				'label' => __( 'Offset', 'elementor-tigonhome' ),
-				'type' => Controls_Manager::NUMBER,
-				'default' => 0,
-				'description' => __( 'Use this setting to skip over posts (e.g. \'2\' to skip over 2 posts).', 'elementor-tigonhome' ),
-			]
-		);
-
-		$this->end_controls_tab();
-
-		$this->end_controls_tabs();
-
 		$this->add_control(
 			'orderby',
 			[
@@ -322,16 +228,6 @@ class TH_Posts extends Widget_Base {
 					'asc' => __( 'ASC', 'elementor-tigonhome' ),
 					'desc' => __( 'DESC', 'elementor-tigonhome' ),
 				],
-			]
-		);
-
-		$this->add_control(
-			'ignore_sticky_posts',
-			[
-				'label' => __( 'Ignore Sticky Posts', 'elementor-tigonhome' ),
-				'type' => Controls_Manager::SWITCHER,
-				'default' => 'yes',
-				'description' => __( 'Sticky-posts ordering is visible on frontend only', 'elementor-tigonhome' ),
 			]
 		);
 
@@ -1018,28 +914,15 @@ class TH_Posts extends Widget_Base {
 			'paged' => $paged,
 			'orderby' => $settings['orderby'],
 			'order' => $settings['order'],
-			'ignore_sticky_posts' => ('yes' !== $settings['ignore_sticky_posts']) ? true : false,
 		];
 
-		if( ! empty( $settings['ids'] ) ) {
-			$args['post__in'] = $settings['ids'];
-		}
-
-		if( ! empty( $settings['ids_exclude'] ) ) {
-			$args['post__not_in'] = $settings['ids_exclude'];
-		}
-
-		if( ! empty( $settings['category'] ) ) {
-			$args['category__in'] = $settings['category'];
-		}
-
-		if( ! empty( $settings['category_exclude'] ) ) {
-			$args['category__not_in'] = $settings['category_exclude'];
-		}
-
-		if( 0 !== absint( $settings['offset'] ) ) {
-			$args['offset'] = $settings['offset'];
-		}
+    $queried_object = get_queried_object();
+    if (is_archive()) {
+      if (is_category()) {
+        $terms = $queried_object;
+        $args['category_name'] = $terms->slug;
+      }
+    }
 
 		return $query = new \WP_Query( $args );
 	}
@@ -1047,7 +930,7 @@ class TH_Posts extends Widget_Base {
 	public function render_element_header() {
 		$settings = $this->get_settings_for_display();
 
-		$classes = 'th-posts';
+		$classes = 'th-posts th-archive-posts';
 
 		if( !empty( $settings['_skin'] ) ) {
 			$classes .= ' th-posts--' . $settings['_skin'];
@@ -1113,15 +996,6 @@ class TH_Posts extends Widget_Base {
 
 				<div class="th-post__content animated contentFadeInRight">
 
-					<?php if ('' !== $this->get_instance_value_skin('show_category') ): ?>
-						<div class="th-post__categories">
-							<?php foreach ($categories as $key => $category): ?>
-								<a class="th-post__category-link" href="<?php echo esc_url( get_category_link($category->term_id) ); ?>">
-									<?php echo esc_html($category->name); ?>
-								</a>
-							<?php endforeach; ?>
-						</div>
-					<?php endif; ?>
 					<?php if ('' !== $this->get_instance_value_skin('show_title') || '' !== $this->get_instance_value_skin('show_read_more')): ?>
 						<div class="th-post__links">
 							<?php

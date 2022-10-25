@@ -44,6 +44,10 @@ class Plugin {
 		$this->widgets = array(
 			'th-slides',
 			'th-posts',
+			'th-archive-posts',
+			'th-archive-title',
+			'th-post-content',
+			'th-post-title',
 			'th-categories',
 		);
 
@@ -54,10 +58,14 @@ class Plugin {
 	 * Register styles
 	 */
 	public function register_styles() {
+		wp_register_style( 'th-magnific-popup', plugins_url( '/assets/lib/magnific-popup/magnific-popup.min.css', __FILE__ ) );
+
 		wp_register_style( 'th-swiper', plugins_url( '/assets/css/th-swiper.css', __FILE__ ) );
 		wp_register_style( 'th-slides', plugins_url( '/assets/css/th-slides.css', __FILE__ ) );
 		wp_register_style( 'th-posts', plugins_url( '/assets/css/th-posts.css', __FILE__ ) );
+		wp_register_style( 'th-post-content', plugins_url( '/assets/css/th-post-content.css', __FILE__ ) );
 		wp_register_style( 'th-categories', plugins_url( '/assets/css/th-categories.css', __FILE__ ) );
+		wp_register_style( 'th-title', plugins_url( '/assets/css/th-title.css', __FILE__ ) );
 
 	}
 
@@ -73,8 +81,11 @@ class Plugin {
 	 * Register scripts
 	 */
 	public function register_scripts() {
+		wp_register_script( 'th-magnific-popup', plugins_url( '/assets/lib/magnific-popup/jquery.magnific-popup.min.js', __FILE__ ), [ 'jquery' ], false, true );
 		wp_register_script( 'th-swiper', plugins_url( '/assets/lib/swiper/swiper.min.js', __FILE__ ), [ 'jquery' ], false, true );
-		wp_register_script( 'th-widget-carousel', plugins_url( '/assets/js/th-widget-carousel.js', __FILE__ ), [ 'jquery' ], false, true );
+
+		wp_register_script( 'th-swiper', plugins_url( '/assets/lib/swiper/swiper.min.js', __FILE__ ), [ 'jquery' ], false, true );
+		wp_register_script( 'th-gallery-popup', plugins_url( '/assets/js/th-gallery-popup.js', __FILE__ ), [ 'jquery' ], false, true );
 
 	}
 
@@ -130,6 +141,10 @@ class Plugin {
 		// Register Widgets
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Slides\TH_Slides() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Posts\TH_Posts() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Archive_Posts\TH_Archive_Posts() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Archive_Title\TH_Archive_Title() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Post_Content\TH_Post_Content() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Post_Title\TH_Post_Title() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Categories\TH_Categories() );
 
 

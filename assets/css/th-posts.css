@@ -1,3 +1,4 @@
+.th-posts.th-archive-posts .th-post__content { padding: 20px 0 0; }
 .th-posts .th-post { text-align: right; }
 .th-posts .th-post__featured { position: relative; overflow: hidden; transition: all 0.3s; }
 .th-posts .th-post__featured img { position: absolute; top: 0; left: 0; width: 100%; height: 100% !important; max-width: 100% !important; transition: all 0.3s; }
@@ -9,3 +10,7 @@
 .th-posts .th-post__title { font-size: 20px; color: #222222; line-height: 1.5; text-transform: uppercase; margin-right: 10px; }
 .th-posts .th-post__read-more { min-width: 90px; font-size: 18px; line-height: 1.5; color: #0693e3; transition: all 0.3s; }
 .th-posts .th-post__read-more:hover { text-decoration: underline; }
+.th-posts .th-post .contentFadeInRight { animation-name: contentFadeInRight; }
+
+@keyframes contentFadeInRight { 0% { opacity: 0; transform: translate3d(20px, 0, 0); }
+  100% { opacity: 1; transform: none; } }
