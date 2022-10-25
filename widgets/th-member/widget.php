@@ -32,13 +32,13 @@ class TH_Member extends Widget_Base
     public function get_style_depends()
     {
         //wp_register_style('jbox-css', 'https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.3/dist/jBox.all.min.js', array(), '1.3.3');
-        return ['th-member'];
+        return ['th-jbox','th-member'];
     }
 
     public function get_script_depends()
     {
         //wp_register_script('jbox-js', 'https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.3/dist/jBox.all.min.css', array('jquery'), false, true);
-        return ['th-member'];
+        return ['th-jbox','th-member'];
     }
 
     public function members_query()

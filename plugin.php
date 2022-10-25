@@ -63,6 +63,8 @@ class Plugin
 	 * Register styles
 	 */
 	public function register_styles() {
+		wp_register_style( 'th-jbox', "https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.3/dist/jBox.min.css" );
+
 		wp_register_style( 'th-magnific-popup', plugins_url( '/assets/lib/magnific-popup/magnific-popup.min.css', __FILE__ ) );
 		wp_register_style( 'th-swiper', plugins_url( '/assets/css/th-swiper.css', __FILE__ ) );
 		wp_register_style( 'th-slides', plugins_url( '/assets/css/th-slides.css', __FILE__ ) );
@@ -87,6 +89,8 @@ class Plugin
 	 * Register scripts
 	 */
 	public function register_scripts() {
+		wp_register_script( 'th-jbox', "https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.3/dist/jBox.min.js", [ 'jquery' ], false, true );
+
 		wp_register_script( 'th-magnific-popup', plugins_url( '/assets/lib/magnific-popup/jquery.magnific-popup.min.js', __FILE__ ), [ 'jquery' ], false, true );
 		wp_register_script( 'th-swiper', plugins_url( '/assets/lib/swiper/swiper.min.js', __FILE__ ), [ 'jquery' ], false, true );
 		wp_register_script('th-widget-carousel', plugins_url('/assets/js/th-widget-carousel.js', __FILE__), ['jquery'], false, true);
