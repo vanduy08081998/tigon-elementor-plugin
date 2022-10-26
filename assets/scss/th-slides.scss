@@ -1,47 +1,47 @@
-.th-slides{
+.th-slides {
   height: 600px;
-  .th-slide{
-    &__sub-heading{
+  .th-slide {
+    &__sub-heading {
       margin-top: 0;
       margin-bottom: 8px;
       font-weight: normal;
-      color: #6EC1E4;
+      color: #6ec1e4;
     }
-    &__heading{
+    &__heading {
       margin-top: 0;
       margin-bottom: 20px;
       font-size: 36px;
-      color: #6EC1E4;
+      color: #6ec1e4;
     }
-    &__desc{
+    &__desc {
       font-size: 18px;
-      color: #6EC1E4;
+      color: #6ec1e4;
       margin-bottom: 20px;
     }
-    &__link{
+    &__link {
       transition: all 0.3s;
       display: inline-block;
       vertical-align: middle;
       width: max-content;
       line-height: 1;
       margin-right: 20px;
-      &:last-child{
+      &:last-child {
         margin-right: 0;
       }
     }
-    &__button{
-      border: 2px solid #6EC1E4;
+    &__button {
+      border: 2px solid #6ec1e4;
       background: transparent;
-      color: #6EC1E4;
+      color: #6ec1e4;
       padding: 12px 24px;
       font-size: 16px;
       font-weight: 500;
       border-radius: 3px;
     }
   }
-  @media(max-width: 480px){
-    .th-slide{
-      &__links{
+  @media (max-width: 480px) {
+    .th-slide {
+      &__links {
         display: flex;
         flex-direction: column;
       }

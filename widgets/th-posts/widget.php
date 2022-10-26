@@ -788,7 +788,7 @@ class TH_Posts extends Widget_Base
 		$this->add_control(
 			'heading_readmore_style',
 			[
-				'label' => __( 'Read More', 'elementor-tigonhome' ),
+				'label' => __('Read More', 'elementor-tigonhome'),
 				'type' => Controls_Manager::HEADING,
 				'condition' => [
 					'show_read_more!' => '',
