@@ -1,4 +1,7 @@
-<<<<<<< HEAD
+.th-posts.th-archive-posts .th-post__content {
+    padding: 20px 0 0;
+}
+
 .th-posts .th-post {
     text-align: right;
 }
@@ -43,7 +46,6 @@
 .th-posts .th-post__links {
     display: flex;
     justify-content: flex-end;
-    align-items: center;
 }
 
 .th-posts .th-post__title {
@@ -51,7 +53,7 @@
     color: #222222;
     line-height: 1.5;
     text-transform: uppercase;
-    margin: 0 10px 0 0;
+    margin-right: 10px;
 }
 
 .th-posts .th-post__read-more {
@@ -65,21 +67,19 @@
 .th-posts .th-post__read-more:hover {
     text-decoration: underline;
 }
-=======
-.th-posts.th-archive-posts .th-post__content { padding: 20px 0 0; }
-.th-posts .th-post { text-align: right; }
-.th-posts .th-post__featured { position: relative; overflow: hidden; transition: all 0.3s; }
-.th-posts .th-post__featured img { position: absolute; top: 0; left: 0; width: 100%; height: 100% !important; max-width: 100% !important; transition: all 0.3s; }
-.th-posts .th-post__featured:hover img { transform: scale(1.05); }
-.th-posts .th-post__categories { margin-top: 10px; }
-.th-posts .th-post__category-link { font-size: 18px; color: #222222; line-height: 1.5; font-weight: 500; margin-top: 10px; transition: all 0.3s; }
-.th-posts .th-post__category-link:hover { color: #0693e3; }
-.th-posts .th-post__links { display: flex; justify-content: flex-end; }
-.th-posts .th-post__title { font-size: 20px; color: #222222; line-height: 1.5; text-transform: uppercase; margin-right: 10px; }
-.th-posts .th-post__read-more { min-width: 90px; font-size: 18px; line-height: 1.5; color: #0693e3; transition: all 0.3s; }
-.th-posts .th-post__read-more:hover { text-decoration: underline; }
-.th-posts .th-post .contentFadeInRight { animation-name: contentFadeInRight; }
 
-@keyframes contentFadeInRight { 0% { opacity: 0; transform: translate3d(20px, 0, 0); }
-  100% { opacity: 1; transform: none; } }
->>>>>>> f0f9f063976b3543d10fa6bb430bdc72cdc4e505
+.th-posts .th-post .contentFadeInRight {
+    animation-name: contentFadeInRight;
+}
+
+@keyframes contentFadeInRight {
+    0% {
+        opacity: 0;
+        transform: translate3d(20px, 0, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}

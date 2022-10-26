@@ -1388,35 +1388,19 @@ class TH_Slides extends Widget_Base
 			<?php
 			// if (!empty($settings['list'])) {
 
-			// 	foreach ($settings['list'] as $key => $value) {
+			foreach ($settings['list'] as $key => $value) {
 
-			// 		echo '<div class="swiper-slide elementor-repeater-item-' . esc_attr($value['_id']) . '" >';
+				// 		echo '<div class="swiper-slide elementor-repeater-item-' . esc_attr($value['_id']) . '" >';
 
-			// 		$this->render_element_item($value);
+				$this->render_element_item($value);
 
-			// 		echo '</div>';
-			// 	}
+				// 		echo '</div>';
+			}
 			// }
 			?>
 		</div> -->
 
 		<section class="slider-section">
-			<!-- <header>
-				<div class="top-menu">
-					<div class="menu-left-side">
-						<div class="home-button big-element menu-element">
-							<div class="img_logo">
-								<a href="https://tigonhome.com">
-									<img class="rich-link" src="https://tigonhome.com/wp-content/themes/tigonhome/assets/images/logo_white.png">
-								</a>
-							</div>
-						</div>
-						<div class="delete-in-single big-element menu-element filter-mq golden-bg">
-							<p class="text font-style-element-bold">Menu</p>
-						</div>
-					</div>
-				</div>
-			</header> -->
 			<div class="sliders">
 				<div class="bg-slider slider">
 					<div class="slide">
