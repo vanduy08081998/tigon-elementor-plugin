@@ -1124,22 +1124,36 @@ class TH_Posts extends Widget_Base
 		$categories = get_the_category(get_the_ID());
 
 		$placeholder = \Elementor\Utils::get_placeholder_image_src();
-		$featured_img_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
-	?>
-		<article id="post-<?php the_ID();  ?>" <?php post_class('elementor-item th-post'); ?>>
-			<?php if ('' !== $this->get_instance_value_skin('show_thumbnail')) { ?>
-				<div class="th-post__thumbnail">
-					<a href="<?php the_permalink() ?>">
-						<div class="th-post__featured">
-							<?php if ($featured_img_url) : ?>
-								<?php the_post_thumbnail($this->get_instance_value_skin('thumbnail_size')); ?>
-							<?php else : ?>
-								<img src="<?php echo $placeholder; ?>" alt="">
-							<?php endif; ?>
+    $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
+		?>
+			<article id="post-<?php the_ID();  ?>" <?php post_class( 'elementor-item th-post' ); ?>>
+				<?php if( '' !== $this->get_instance_value_skin('show_thumbnail' ) ) { ?>
+					<div class="th-post__thumbnail">
+						<a href="<?php the_permalink() ?>">
+							<div class="th-post__featured">
+								<?php if ($featured_img_url): ?>
+									<?php the_post_thumbnail( $this->get_instance_value_skin('thumbnail_size') ); ?>
+								<?php else: ?>
+									<img class="lazy" src="<?php echo $placeholder; ?>" alt="">
+								<?php endif; ?>
+							</div>
+						</a>
+					</div>
+				<?php } ?>
+
+				<div class="th-post__content animated contentFadeInRight">
+
+					<?php if ('' !== $this->get_instance_value_skin('show_category') ): ?>
+						<div class="th-post__categories">
+							<?php foreach ($categories as $key => $category): ?>
+								<a class="th-post__category-link" href="<?php echo esc_url( get_category_link($category->term_id) ); ?>">
+									<?php echo esc_html($category->name); ?>
+								</a>
+							<?php endforeach; ?>
 						</div>
 					</a>
 				</div>
-			<?php } ?>
+			<?php endif; ?>
 
 			<div class="th-post__content">
 
@@ -1191,27 +1205,9 @@ class TH_Posts extends Widget_Base
 		<div class="th-pagination">
 			<?php
 			$big = 999999999; // need an unlikely integer
-			$prev_text = '<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<g clip-path="url(#clip0_300_3400)">
-						<path d="M23.1453 5.53801C20.7608 6.44641 18.3762 7.31697 16.0295 8.33892C14.4398 9.02022 12.2823 9.77722 10.9576 11.0263C10.7683 10.0043 10.5034 9.05807 10.0113 8.14961C9.89776 7.92251 9.59496 7.84681 9.36786 7.99827C7.51321 9.02016 5.62071 10.0043 3.84176 11.1398C2.81981 11.7833 0.397406 13.108 0.586656 14.622C0.775906 16.0603 3.16046 17.0067 4.22026 17.5744C6.18846 18.5585 8.27021 19.2776 10.2006 20.2617C10.352 20.3374 10.4655 20.2996 10.5791 20.2239C10.7305 20.3374 10.9954 20.2996 11.109 20.1103C11.5253 19.3533 11.601 18.5585 11.5632 17.7258C11.5632 17.3473 11.5632 16.7417 11.4118 16.2496C15.4996 17.4608 19.7766 17.7258 23.9402 18.6342C24.3565 18.7099 24.735 18.2935 24.5079 17.915C23.5238 16.3253 20.6472 13.9407 21.1771 11.9725C21.7449 9.92863 22.9939 8.11182 23.7509 6.18146C23.9023 5.80296 23.486 5.42446 23.1453 5.53801ZM20.0416 12.4267C19.8902 14.13 21.6691 15.909 22.8803 17.423C18.944 16.666 14.9318 16.3253 11.0333 15.5304C10.9576 15.5304 10.8819 15.5304 10.8062 15.5683C10.6926 15.5304 10.5791 15.5683 10.5034 15.6818C10.2006 16.2117 10.5791 16.9308 10.6548 17.4987C10.7305 18.2178 10.6548 18.8991 10.4655 19.5804C9.21646 18.8612 7.81601 18.3691 6.52911 17.7635C4.93941 17.0066 2.63056 16.2117 1.53291 14.7355C0.624506 13.5243 7.32396 10.1178 9.36786 9.05801C9.74636 9.96641 9.93561 10.8748 10.087 11.8589C10.1249 12.086 10.2763 12.1617 10.4277 12.1996C10.5791 12.351 10.8062 12.4645 10.9954 12.3131C14.3262 9.77716 18.414 8.37677 22.3505 6.9384C21.4421 8.64172 20.193 10.4964 20.0416 12.4267Z" fill="#232424"/>
-					</g>
-					<defs>
-						<clipPath id="clip0_300_3400">
-						<rect width="24" height="24" fill="white" transform="translate(0.576172 24.9104) rotate(-90)"/>
-						</clipPath>
-					</defs>
-				</svg>';
+			$prev_text = 'Prev';
 
-			$next_text = '<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<g clip-path="url(#clip0_300_3396)">
-						<path d="M2.00703 5.53801C4.39158 6.44641 6.77613 7.31697 9.12283 8.33892C10.7125 9.02022 12.87 9.77722 14.1948 11.0263C14.384 10.0043 14.649 9.05807 15.141 8.14961C15.2546 7.92251 15.5574 7.84681 15.7845 7.99827C17.6391 9.02016 19.5316 10.0043 21.3106 11.1398C22.3325 11.7833 24.7549 13.108 24.5657 14.622C24.3764 16.0603 21.9919 17.0067 20.9321 17.5744C18.9639 18.5585 16.8821 19.2776 14.9518 20.2617C14.8004 20.3374 14.6868 20.2996 14.5733 20.2239C14.4219 20.3374 14.1569 20.2996 14.0434 20.1103C13.627 19.3533 13.5513 18.5585 13.5892 17.7258C13.5892 17.3473 13.5892 16.7417 13.7406 16.2496C9.65279 17.4608 5.37574 17.7258 1.21218 18.6342C0.795891 18.7099 0.417326 18.2935 0.644426 17.915C1.62853 16.3253 4.50513 13.9407 3.97523 11.9725C3.40742 9.92863 2.15843 8.11182 1.40143 6.18146C1.25003 5.80296 1.66638 5.42446 2.00703 5.53801ZM5.11073 12.4267C5.26213 14.13 3.48324 15.909 2.27204 17.423C6.20838 16.666 10.2205 16.3253 14.1191 15.5304C14.1948 15.5304 14.2705 15.5304 14.3462 15.5683C14.4597 15.5304 14.5733 15.5683 14.649 15.6818C14.9518 16.2117 14.5733 16.9308 14.4976 17.4987C14.4219 18.2178 14.4976 18.8991 14.6868 19.5804C15.9359 18.8612 17.3363 18.3691 18.6232 17.7635C20.2129 17.0066 22.5218 16.2117 23.6194 14.7355C24.5278 13.5243 17.8284 10.1178 15.7845 9.05801C15.406 9.96641 15.2167 10.8748 15.0653 11.8589C15.0275 12.086 14.8761 12.1617 14.7247 12.1996C14.5733 12.351 14.3462 12.4645 14.1569 12.3131C10.8261 9.77716 6.73834 8.37677 2.80188 6.9384C3.71028 8.64172 4.95933 10.4964 5.11073 12.4267Z" fill="#232424"/>
-					</g>
-					<defs>
-						<clipPath id="clip0_300_3396">
-						<rect width="24" height="24" fill="white" transform="matrix(0 -1 -1 0 24.5762 24.9104)"/>
-						</clipPath>
-					</defs>
-				</svg>';
+			$next_text = 'Next';
 
 			echo paginate_links(array(
 				'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
