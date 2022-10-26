@@ -19,7 +19,7 @@ class TH_Archive_Posts extends Widget_Base {
 	}
 
 	public function get_title() {
-		return __( 'TH Arhive Posts', 'elementor-tigonhome' );
+		return __( 'Tigon Arhive Posts', 'elementor-tigonhome' );
 	}
 
 	public function get_icon() {
@@ -587,7 +587,7 @@ class TH_Archive_Posts extends Widget_Base {
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
-					'{{WRAPPER}} .th-post__title a' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .th-post__title' => 'color: {{VALUE}};',
 				],
 				'condition' => [
 					'show_title!' => '',
@@ -602,7 +602,7 @@ class TH_Archive_Posts extends Widget_Base {
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
-					' {{WRAPPER}} .th-post__title a:hover' => 'color: {{VALUE}};',
+					' {{WRAPPER}} .th-post__title:hover' => 'color: {{VALUE}};',
 				],
 				'condition' => [
 					'show_title!' => '',
@@ -985,7 +985,7 @@ class TH_Archive_Posts extends Widget_Base {
 						<a href="<?php the_permalink() ?>">
 							<div class="th-post__featured">
 								<?php if ($featured_img_url): ?>
-									<?php the_post_thumbnail( $this->get_instance_value_skin('thumbnail_size') ); ?>
+									<img class="lazy" src="<?php echo $featured_img_url; ?>" alt="">
 								<?php else: ?>
 									<img class="lazy" src="<?php echo $placeholder; ?>" alt="">
 								<?php endif; ?>
@@ -1000,7 +1000,7 @@ class TH_Archive_Posts extends Widget_Base {
 						<div class="th-post__links">
 							<?php
 								if( '' !== $this->get_instance_value_skin('show_title') ) {
-									the_title( '<h3 class="th-post__title"><a href="' . get_the_permalink() . '">', '</a></h3>' );
+									echo '<a href="'.get_the_permalink().'"><h3 class="th-post__title">'.get_the_title().'</h3></a>';
 								}
 							?>
 							<?php

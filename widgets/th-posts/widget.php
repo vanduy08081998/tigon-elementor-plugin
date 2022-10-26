@@ -23,7 +23,7 @@ class TH_Posts extends Widget_Base
 
 	public function get_title()
 	{
-		return __('TH Posts', 'elementor-tigonhome');
+		return __('Tigon Posts', 'elementor-tigonhome');
 	}
 
 	public function get_icon()
@@ -712,7 +712,7 @@ class TH_Posts extends Widget_Base
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
-					'{{WRAPPER}} .th-post__title a' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .th-post__title' => 'color: {{VALUE}};',
 				],
 				'condition' => [
 					'show_title!' => '',
@@ -727,7 +727,7 @@ class TH_Posts extends Widget_Base
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
-					' {{WRAPPER}} .th-post__title a:hover' => 'color: {{VALUE}};',
+					' {{WRAPPER}} .th-post__title:hover' => 'color: {{VALUE}};',
 				],
 				'condition' => [
 					'show_title!' => '',
@@ -1126,34 +1126,20 @@ class TH_Posts extends Widget_Base
 		$placeholder = \Elementor\Utils::get_placeholder_image_src();
     $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
 		?>
-			<article id="post-<?php the_ID();  ?>" <?php post_class( 'elementor-item th-post' ); ?>>
-				<?php if( '' !== $this->get_instance_value_skin('show_thumbnail' ) ) { ?>
-					<div class="th-post__thumbnail">
-						<a href="<?php the_permalink() ?>">
-							<div class="th-post__featured">
-								<?php if ($featured_img_url): ?>
-									<?php the_post_thumbnail( $this->get_instance_value_skin('thumbnail_size') ); ?>
-								<?php else: ?>
-									<img class="lazy" src="<?php echo $placeholder; ?>" alt="">
-								<?php endif; ?>
-							</div>
-						</a>
-					</div>
-				<?php } ?>
-
-				<div class="th-post__content animated contentFadeInRight">
-
-					<?php if ('' !== $this->get_instance_value_skin('show_category') ): ?>
-						<div class="th-post__categories">
-							<?php foreach ($categories as $key => $category): ?>
-								<a class="th-post__category-link" href="<?php echo esc_url( get_category_link($category->term_id) ); ?>">
-									<?php echo esc_html($category->name); ?>
-								</a>
-							<?php endforeach; ?>
+		<article id="post-<?php the_ID();  ?>" <?php post_class( 'elementor-item th-post' ); ?>>
+			<?php if( '' !== $this->get_instance_value_skin('show_thumbnail' ) ) { ?>
+				<div class="th-post__thumbnail">
+					<a href="<?php the_permalink() ?>">
+						<div class="th-post__featured">
+							<?php if ($featured_img_url): ?>
+								<img class="lazy" src="<?php echo $featured_img_url; ?>" alt="">
+							<?php else: ?>
+								<img class="lazy" src="<?php echo $placeholder; ?>" alt="">
+							<?php endif; ?>
 						</div>
 					</a>
 				</div>
-			<?php endif; ?>
+			<?php } ?>
 
 			<div class="th-post__content">
 
@@ -1170,7 +1156,7 @@ class TH_Posts extends Widget_Base
 					<div class="th-post__links">
 						<?php
 						if ('' !== $this->get_instance_value_skin('show_title')) {
-							the_title('<h3 class="th-post__title"><a href="' . get_the_permalink() . '">', '</a></h3>');
+							echo '<a href="'.get_the_permalink().'"><h3 class="th-post__title">'.get_the_title().'</h3></a>';
 						}
 						?>
 						<?php

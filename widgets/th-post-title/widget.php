@@ -15,7 +15,7 @@ class TH_Post_Title extends Widget_Base {
 	}
 
 	public function get_title() {
-		return __( 'TH Post Title', 'elementor-tigonhome' );
+		return __( 'Tigon Post Title', 'elementor-tigonhome' );
 	}
 
 	public function get_icon() {

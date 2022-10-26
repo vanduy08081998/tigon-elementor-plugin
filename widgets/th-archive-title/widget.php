@@ -15,7 +15,7 @@ class TH_Archive_Title extends Widget_Base {
 	}
 
 	public function get_title() {
-		return __( 'TH Arhive Title', 'elementor-tigonhome' );
+		return __( 'Tigon Arhive Title', 'elementor-tigonhome' );
 	}
 
 	public function get_icon() {

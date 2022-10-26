@@ -27,8 +27,11 @@
         }
       }
     }
+    &__content{
+      padding: 20px 0 0;
+    }
     &__categories{
-      margin-top: 10px;
+      line-height: 1;
     }
     &__category-link{
       font-size: 18px;
@@ -51,6 +54,7 @@
       line-height: 1.5;
       text-transform: uppercase;
       margin-right: 10px;
+      transition: all 0.3s;
     }
     &__read-more{
       min-width: 90px;

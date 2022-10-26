@@ -19,11 +19,11 @@ class TH_Categories extends Widget_Base {
 	}
 
 	public function get_title() {
-		return __( 'TH Categories', 'elementor-tigonhome' );
+		return __( 'Tigon List Categories', 'elementor-tigonhome' );
 	}
 
 	public function get_icon() {
-		return 'eicon-category-list';
+		return 'eicon-wordpress';
 	}
 
 	public function get_categories() {
