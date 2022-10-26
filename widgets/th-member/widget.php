@@ -16,7 +16,7 @@ class TH_Member extends Widget_Base
 
     public function get_title()
     {
-        return __('TH Member', 'elementor-tigonhome');
+        return __('TIGON Member', 'elementor-tigonhome');
     }
 
     public function get_icon()

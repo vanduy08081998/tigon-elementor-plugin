@@ -23,7 +23,7 @@ class TH_Posts extends Widget_Base
 
 	public function get_title()
 	{
-		return __('TH Posts', 'elementor-tigonhome');
+		return __('TIGON Posts', 'elementor-tigonhome');
 	}
 
 	public function get_icon()
@@ -788,7 +788,7 @@ class TH_Posts extends Widget_Base
 		$this->add_control(
 			'heading_readmore_style',
 			[
-				'label' => __( 'Read More', 'elementor-tigonhome' ),
+				'label' => __('Read More', 'elementor-tigonhome'),
 				'type' => Controls_Manager::HEADING,
 				'condition' => [
 					'show_read_more!' => '',

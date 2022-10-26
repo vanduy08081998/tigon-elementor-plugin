@@ -30,6 +30,7 @@
 
 .th-members ._member .__content .info {
     display: inline-flex;
+    align-items: center;
 }
 
 .th-members ._member .__content .info .info_space {
@@ -44,4 +45,9 @@
 .jBox-wrapper .jBox-content {
     font-size: 15px;
     font-family: "element";
+}
+
+.th-members ._member .__content .info ._role span {
+    color: #0000EE;
+    font-size: 12px;
 }
